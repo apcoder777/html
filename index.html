@@ -1,0 +1,209 @@
+ 
+
+    
+ 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>web.os</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 20px;
+            height: 200vh;
+            display: flex;
+            justify-content: flex-start;
+            align-items: flex-start;
+            font-family: 'Segoe UI', sans-serif;
+            color: white;
+            background-color: #121212;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-attachment: fixed;
+            transition: background-image 0.5s ease;
+        }
+
+        .upload-card {
+            width: 240px;
+            padding: 20px;
+            background: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(12px);
+            border-radius: 12px;
+            border: 1px solid rgb(216, 206, 69);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        
+        }
+
+        #changeBtn {
+            display: none;
+            padding: 8px 15px;
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(192, 192, 192, 0.856);
+            border-radius: 10px;
+            color: white;
+            cursor: pointer;
+            font-size: 0.85rem;
+            
+        }
+
+        h2 { font-size: 1.1rem; margin: 0 0 10px 0; }
+        input { font-size: 0.8rem; width: 100%; }
+        .hidden { display: none !important; }
+        #e{
+            height: 800px;
+            width: 1200px;
+          display: flex;
+          justify-content:flex-end;
+
+        }
+
+        #a{
+            height: 375px;
+            width: 100px;
+            background:linear-gradient(white,gray);
+            backdrop-filter:blur(2px);
+            border-radius:10px 20px 30px 40px;
+            border: 1px solid rgb(102, 102, 94);
+            text-align: center;
+              box-shadow: 0 10px 30px rgba(253, 250, 255, 0.5);
+margin-right: -1000px;
+color:#ffffff9f;
+        }
+        #q{
+            height: 700px;
+            width: 100px;
+        display:flex;
+        justify-content:flex-end;
+        align-items: flex-end;
+         }
+          #o{
+            height: 700px;
+            width: 800px;
+        display:flex;
+        justify-content:flex-end;
+        align-items: flex-end;
+        
+         }
+         #h{
+height: 20px;
+width: 100px;
+background:linear-gradient(orange,red);
+border-radius: 9rem ;
+margin-left: 400px;
+margin-right:-800px ;
+
+ box-shadow: 0 10px 30px orangered;
+         }
+         
+         #app{
+background:linear-gradient( white,grey);
+        height:95vh;
+        width:1000vh;
+
+        margin-top: 800px;
+    margin-bottom: -800px;
+    margin-left: -200px;
+margin-right:250px ;
+        border-radius: 9rem;
+         box-shadow: 0 50px 100px whitesmoke;
+         }
+
+    </style>
+    
+</head>
+<body>
+
+     
+
+    <div id="uploadCard" class="upload-card">
+        <h2>Set Wallpaper</h2>
+        <input type="file" id="imageInput" accept="image/*">
+    </div>
+
+    <button id="changeBtn"> add Wallpaper</button>
+    <div id="q">
+    <div id="d">
+    
+    </div>
+    <div id="o">
+  <a > <div id="h">
+
+    </div></a>
+   
+</div>
+     
+   
+</div>
+ 
+
+      
+       <div id="e">
+    <div id="a">
+        <h4 style="color:rgb(24, 22, 22);"> WebApps..</h4>
+         <a href="https://www.youtube.com/"  ><img src="D:\image/y.png" ></a>
+  <a href="https://onecompiler.com/" ><img src="D:\image/code.png" height="64px" width="64px"></a>
+        </div>
+ 
+
+    </div>
+</div>
+  <div id="app">
+<center><h1 style="color:black">.Web apps.
+</h1></center>
+    </div>
+<u></u>
+    <script>
+        const imageInput = document.getElementById('imageInput');
+        const uploadCard = document.getElementById('uploadCard');
+        const changeBtn = document.getElementById('changeBtn');
+
+        // 1. CHECK FOR SAVED WALLPAPER ON LOAD
+        window.onload = function() {
+            const savedWallpaper = localStorage.getItem('userWallpaper');
+            if (savedWallpaper) {
+                applyWallpaper(savedWallpaper);
+            }
+        };
+
+        // 2. HANDLE NEW UPLOADS
+        imageInput.addEventListener('change', function() {
+            const file = this.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    const base64Image = e.target.result;
+                    
+                    // Save to browser memory
+                    localStorage.setItem('userWallpaper', base64Image);
+                    
+                    // Apply to screen
+                    applyWallpaper(base64Image);
+                }
+                reader.readAsDataURL(file);
+            }
+        });
+
+        // 3. APPLY WALLPAPER FUNCTION
+        function applyWallpaper(imgData) {
+            document.body.style.backgroundImage = `url('${imgData}')`;
+            uploadCard.classList.add('hidden');
+            changeBtn.style.display = 'block';
+        }
+
+        // 4. RESET/CHANGE LOGIC
+        changeBtn.addEventListener('click', function() {
+            uploadCard.classList.remove('hidden');
+            changeBtn.style.display = 'none';
+
+ 
+
+        });
+    </script>
+  
+
+</body>
+</html>
